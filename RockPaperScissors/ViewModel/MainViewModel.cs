@@ -13,6 +13,8 @@ namespace RockPaperScissors.ViewModel
     {
         private RPSResult _player;
         private RPSResult _computer;
+        private int playerScore;
+        private int computerScore;
 
         private Random _rand;
 
@@ -20,6 +22,8 @@ namespace RockPaperScissors.ViewModel
         {
             Player = RPSResult.None;
             Computer = RPSResult.None;
+            playerScore = 0;
+            computerScore = 0;
             _rand = new Random();
             Play = new ParametrizedRelayCommand(
                 (param) =>
@@ -50,6 +54,7 @@ namespace RockPaperScissors.ViewModel
             {
                 _player = value;
                 NotifyPropertyChanged();
+                NotifyPropertyChanged("WhoWon");
             }
         }
 
@@ -63,6 +68,60 @@ namespace RockPaperScissors.ViewModel
             {
                 _computer = value;
                 NotifyPropertyChanged();
+                NotifyPropertyChanged("WhoWon");
+            }
+        }
+
+        public int PlayerScore
+        {
+            get
+            {
+                return playerScore;
+            }
+            set
+            {
+                playerScore = value;
+                NotifyPropertyChanged("WhoWon");
+            }
+        }
+        public int ComputerScore
+        {
+            get
+            {
+                return computerScore;
+            }
+            set
+            {
+                computerScore = value;
+                NotifyPropertyChanged("WhoWon");
+            }
+        }
+
+        public void WhoWon()
+        {
+            if ((Player == RPSResult.Rock) && (Computer == RPSResult.Paper))
+            {
+                computerScore++;
+            }
+            else if ((Player == RPSResult.Rock) && (Computer == RPSResult.Scissors))
+            {
+                playerScore++;
+            }
+            else if ((Player == RPSResult.Paper) && (Computer == RPSResult.Rock))
+            {
+                playerScore++;
+            }
+            else if ((Player == RPSResult.Paper) && (Computer == RPSResult.Scissors))
+            {
+                computerScore++;
+            }
+            else if ((Player == RPSResult.Scissors) && (Computer == RPSResult.Rock))
+            {
+                computerScore++;
+            }
+            else if ((Player == RPSResult.Scissors) && (Computer == RPSResult.Paper))
+            {
+                playerScore++;
             }
         }
 

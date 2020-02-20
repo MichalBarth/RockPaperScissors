@@ -37,15 +37,18 @@
 
         <TextBlock HorizontalAlignment="Left" Margin="171,122,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Player}" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="172,119,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Computer}" VerticalAlignment="Top"/>
-        
+
         <StackPanel HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="2" Orientation="Horizontal">
             <Button Content="Rock" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Command="{Binding Play}" CommandParameter="1"/>
             <Button Content="Paper" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Command="{Binding Play}" CommandParameter="2"/>
             <Button Content="Scissors" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Command="{Binding Play}" CommandParameter="3"/>
         </StackPanel>
-        
+
         <Image HorizontalAlignment="Left" Height="100" Margin="137,161,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100" Source="{Binding Player, Converter={StaticResource ResultToPictureConverter}}"/>
         <Image Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="149,161,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100" Source="{Binding Computer, Converter={StaticResource ResultToPictureConverter}}"/>
+
+        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="{Binding PlayerScore}" VerticalAlignment="Center" FontSize="25"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="{Binding ComputerScore}" VerticalAlignment="Center" FontSize="25"/>
 
     </Grid>
 </Window>
