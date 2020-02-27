@@ -39,6 +39,14 @@ namespace RockPaperScissors.ViewModel
                         }
                         Computer = (RPSResult)_rand.Next(3) + 1;
                     }
+                    if ((Player == RPSResult.Rock && Computer == RPSResult.Paper) || (Player == RPSResult.Paper && Computer == RPSResult.Scissors) || (Player == RPSResult.Scissors && Computer == RPSResult.Rock))
+                    {
+                        ComputerScore++;
+                    }
+                    else if ((Player == RPSResult.Rock && Computer == RPSResult.Scissors) || (Player == RPSResult.Paper && Computer == RPSResult.Rock) || (Player == RPSResult.Scissors && Computer == RPSResult.Paper))
+                    {
+                        PlayerScore++;
+                    }
                 },
                 (param) => true
             );
@@ -54,7 +62,6 @@ namespace RockPaperScissors.ViewModel
             {
                 _player = value;
                 NotifyPropertyChanged();
-                NotifyPropertyChanged("WhoWon");
             }
         }
 
@@ -68,7 +75,6 @@ namespace RockPaperScissors.ViewModel
             {
                 _computer = value;
                 NotifyPropertyChanged();
-                NotifyPropertyChanged("WhoWon");
             }
         }
 
@@ -81,7 +87,7 @@ namespace RockPaperScissors.ViewModel
             set
             {
                 playerScore = value;
-                NotifyPropertyChanged("WhoWon");
+                NotifyPropertyChanged();
             }
         }
         public int ComputerScore
@@ -93,35 +99,7 @@ namespace RockPaperScissors.ViewModel
             set
             {
                 computerScore = value;
-                NotifyPropertyChanged("WhoWon");
-            }
-        }
-
-        public void WhoWon()
-        {
-            if ((Player == RPSResult.Rock) && (Computer == RPSResult.Paper))
-            {
-                computerScore++;
-            }
-            else if ((Player == RPSResult.Rock) && (Computer == RPSResult.Scissors))
-            {
-                playerScore++;
-            }
-            else if ((Player == RPSResult.Paper) && (Computer == RPSResult.Rock))
-            {
-                playerScore++;
-            }
-            else if ((Player == RPSResult.Paper) && (Computer == RPSResult.Scissors))
-            {
-                computerScore++;
-            }
-            else if ((Player == RPSResult.Scissors) && (Computer == RPSResult.Rock))
-            {
-                computerScore++;
-            }
-            else if ((Player == RPSResult.Scissors) && (Computer == RPSResult.Paper))
-            {
-                playerScore++;
+                NotifyPropertyChanged();
             }
         }
 
